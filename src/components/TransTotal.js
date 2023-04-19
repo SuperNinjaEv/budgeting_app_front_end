@@ -32,7 +32,7 @@ export default function TransTotal({ total, setTotal }) {
             }
         })
         setTotal(totalSum);
-    });
+    }, );
 
     // Color Coding for total state
     function totalColors() {
