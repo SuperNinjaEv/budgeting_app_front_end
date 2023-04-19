@@ -9,9 +9,9 @@
 ---
 This is a React and Express based RESTful project using a local back-end setup.
 
-You will need to fork and clone both the Front-End and the Back=End repository that is listed below.
+You will need to fork and clone both the Front-End and the Back-End repository that is listed below.
 
-[Back-End Repo](https://github.com/SuperNinjaEv/Budgeting_App_Back_End)
+## [Back-End Repo](https://github.com/SuperNinjaEv/Budgeting_App_Back_End)
 
 I have also included a link to the Asana Project Management board for easy reference of all milestones completed and achieved in this project.
 
@@ -34,6 +34,6 @@ For the front-end, you will need to install the following;
 - Axios
 
 ## Happy budgeting!
-
+***
 ![Burn it](https://i.insider.com/568e8dfcc08a80ae2f8b6a82?width=300&format=jpeg&auto=webp)
-
+***
