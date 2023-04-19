@@ -24,19 +24,24 @@ export default function TransIndex({ total, setTotal }) {
         fetchTransactions()
     }, [])
 
+    useEffect(() => {
+        setTotal(totalSum);
+    });
+
+    // My initial attempts to get total working, created an infinite loop bc it was running with every page render.  Once I buried it in a separate useEffect call, I was able to control when setTotal was used which resolved the issue.
     // function calculateTotal(transactions) {
     //     transactions.map((transaction) => {
-    //         if (transaction.deposit) {
-    //             return totalSum += transaction.amount;
-    //         } else {
-    //             return totalSum -= transaction.amount;
-    //         };
+    // if (transaction.deposit) {
+    //     return totalSum += transaction.amount;
+    // } else {
+    //     return totalSum -= transaction.amount;
+    // };
     //     })
     //     setTotal(totalSum)
     // };
-
     // calculateTotal(transactions)
 
+    // DATE CONVERSION FUNCTION
     function getDate(transaction) {
         const date = new Date(transaction.date);
         const options = { month: "short", day: "numeric", year: "numeric" }
@@ -59,17 +64,22 @@ export default function TransIndex({ total, setTotal }) {
                     {transactions.map((transaction, index) => {
                         console.log(transaction);
 
+                        if (transaction.deposit) {
+                            totalSum += transaction.amount;
+                        } else {
+                            totalSum -= transaction.amount;
+                        };
+
                         return (
 
                             <tr key={index} className="Transaction">
                                 <td>{getDate(transaction)}</td>
-
-                                <a
+                                <td><a
                                     href={`/transactions/${index}`}
                                     style={{ "textTransform": "capitalize" }}
                                 >
-                                    <td>{transaction.from}</td>
-                                </a>
+                                    {transaction.from}
+                                </a></td>
                                 <td>
                                     {
                                         transaction.deposit

@@ -25,7 +25,7 @@ function App() {
       <main>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/transactions' element={<TransIndex total={total} />} />
+          <Route path='/transactions' element={<TransIndex total={total} setTotal={setTotal} />} />
           <Route path='/transactions/:index' element={<TransShow />} />
           <Route path='/transactions/new' element={<TransNew />} />
           <Route path='/transactions/:index/edit' element={<TransEdit />} />

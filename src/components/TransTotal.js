@@ -7,6 +7,16 @@ export default function TransTotal({ total, setTotal }) {
 
     const [transactions, setTransactions] = useState([]);
 
+    function totalColors(){
+        if (total <= 0){
+return 
+        } else if (){
+
+        }else {
+
+        }
+    }
+
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
