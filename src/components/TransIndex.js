@@ -8,6 +8,7 @@ const API = process.env.REACT_APP_API_URL;
 export default function TransIndex({ total, setTotal }) {
 
     const [transactions, setTransactions] = useState([]);
+    let totalSum = 0;
 
     useEffect(() => {
         const fetchTransactions = async () => {
@@ -26,30 +27,40 @@ export default function TransIndex({ total, setTotal }) {
     // function calculateTotal(transactions) {
     //     transactions.map((transaction) => {
     //         if (transaction.deposit) {
-    //             setTotal(total + transaction.amount);
+    //             return totalSum += transaction.amount;
     //         } else {
-    //             setTotal(total - transaction.amount);
-    //         }
+    //             return totalSum -= transaction.amount;
+    //         };
     //     })
+    //     setTotal(totalSum)
     // };
+
+    // calculateTotal(transactions)
+
+    function getDate(transaction) {
+        const date = new Date(transaction.date);
+        const options = {month: "short", day: "numeric", year: "numeric"}
+        return (date.toLocaleString("en-US", options));
+      };
 
 
     return (
         <div className="transactionsIndex">
-            <ol>
+            <table>
+            <thead>
+        <tr>
+          <th>Date</th>
+          <th>Transaction Name</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
                 {transactions.map((transaction, index) => {
                     console.log(transaction);
-
-                    // Cause Infinite Loop...
-                    // if (transaction.deposit) {
-                    //     setTotal(total + transaction.amount);
-                    // } else {
-                    //     setTotal(total - transaction.amount);
-                    // };
 
                     return (
 
                         <li key={index} className="Transaction">
+
                             <a
                                 href={`/transactions/${index}`}
                                 style={{ "textTransform": "capitalize" }}
@@ -62,11 +73,10 @@ export default function TransIndex({ total, setTotal }) {
                                 }
                             </div>
                         </li>
-
                     )
                 })
                 }
-            </ol>
+            </table>
         </div>
     )
 };

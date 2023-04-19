@@ -28,6 +28,12 @@ export default function TransShow() {
             .catch((err) => console.error(err))
     };
 
+    function getDate() {
+        const date = new Date(transaction.date);
+        const options = {month: "short", day: "numeric", year: "numeric"}
+        return (date.toLocaleString("en-US", options));
+      };
+
     return (
         <div className="Transaction">
             <h2>Transaction:</h2>
@@ -40,7 +46,7 @@ export default function TransShow() {
                         : <span style={{ color: "red" }}> -${transaction.amount}</span>
                 }
             </p>
-            <p>Date: {transaction.date}</p>
+            <p>Date: {getDate()}</p>
             <Link to="/transactions">
                 <button>
                     Back
