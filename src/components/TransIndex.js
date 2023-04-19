@@ -8,7 +8,7 @@ const API = process.env.REACT_APP_API_URL;
 export default function TransIndex({ total, setTotal }) {
 
     const [transactions, setTransactions] = useState([]);
-    let totalSum = 0;
+
 
     useEffect(() => {
         const fetchTransactions = async () => {
@@ -23,10 +23,11 @@ export default function TransIndex({ total, setTotal }) {
         }
         fetchTransactions()
     }, [])
-
-    useEffect(() => {
-        setTotal(totalSum);
-    });
+    
+    let totalSum = 0;
+    // useEffect(() => {
+    //     setTotal(totalSum);
+    // });
 
     // My initial attempts to get total working, created an infinite loop bc it was running with every page render.  Once I buried it in a separate useEffect call, I was able to control when setTotal was used which resolved the issue.
     // function calculateTotal(transactions) {
@@ -64,11 +65,11 @@ export default function TransIndex({ total, setTotal }) {
                     {transactions.map((transaction, index) => {
                         console.log(transaction);
 
-                        if (transaction.deposit) {
-                            totalSum += transaction.amount;
-                        } else {
-                            totalSum -= transaction.amount;
-                        };
+                        // if (transaction.deposit) {
+                        //     totalSum += transaction.amount;
+                        // } else {
+                        //     totalSum -= transaction.amount;
+                        // };
 
                         return (
 

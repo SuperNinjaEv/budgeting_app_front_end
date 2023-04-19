@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom"
 
-export default function Home(){
+export default function Home() {
     return (
         <div className="Home">
-            <h2>Your Budget</h2>
+            <h3>Welcome to your budget helper.  <br />Please login to view detailed account information</h3>
+            <button><Link to={'/transactions'}>Log in</Link></button>
         </div>
     )
 }

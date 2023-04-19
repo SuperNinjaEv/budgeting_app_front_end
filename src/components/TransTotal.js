@@ -2,11 +2,39 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 const API = process.env.REACT_APP_API_URL;
 
-
+// TOTAL CALCULATION & COLOR CODING COMPONENT
 export default function TransTotal({ total, setTotal }) {
 
     const [transactions, setTransactions] = useState([]);
+    let totalSum = 0;
 
+    // Initial fetch of data on page render
+    useEffect(() => {
+        const fetchTransactions = async () => {
+            try {
+                const res = await axios.get(`${API}/transactions`);
+                console.log(res.data);
+                setTransactions(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchTransactions()
+    }, [])
+
+    // Maps through transaction array, checks the deposit boolean value & add/subtracts to total
+    useEffect(() => {
+        transactions.map((transaction) => {
+            if (transaction.deposit) {
+                return totalSum += transaction.amount;
+            } else {
+                return totalSum -= transaction.amount;
+            }
+        })
+        setTotal(totalSum);
+    });
+
+    // Color Coding for total state
     function totalColors() {
         if (total <= 0) {
             return { backgroundColor: "red", color: "white" }
@@ -17,30 +45,7 @@ export default function TransTotal({ total, setTotal }) {
         }
     };
 
-    useEffect(() => {
-        const fetchTransactions = async () => {
-            try {
-                const res = await axios.get(`${API}/transactions`);
-                console.log(res.data);
-                setTransactions(res.data);
-                calculateTotal(transactions)
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        fetchTransactions()
-    }, [])
-
-    function calculateTotal(transactions) {
-        transactions.map((transaction) => {
-            if (transaction.deposit) {
-                setTotal(total + transaction.amount);
-            } else {
-                setTotal(total - transaction.amount);
-            }
-        })
-    };
     return (
-        <h4>Your current budget total: <span style={totalColors()}> ${total}</span></h4>
+        <h5>Your current budget total: <span style={totalColors()}> ${total}</span></h5>
     )
 };
