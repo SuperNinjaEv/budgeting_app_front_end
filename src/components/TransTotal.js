@@ -7,15 +7,15 @@ export default function TransTotal({ total, setTotal }) {
 
     const [transactions, setTransactions] = useState([]);
 
-    function totalColors(){
-        if (total <= 0){
-return 
-        } else if (){
-
-        }else {
-
+    function totalColors() {
+        if (total <= 0) {
+            return { backgroundColor: "red", color: "white" }
+        } else if (total <= 100) {
+            return { backgroundColor: "yellow", color: "white" }
+        } else {
+            return { backgroundColor: "green", color: "white" }
         }
-    }
+    };
 
     useEffect(() => {
         const fetchTransactions = async () => {
@@ -41,6 +41,6 @@ return
         })
     };
     return (
-    <div>${total}</div>
-)
+        <h4>Your current budget total: <span style={totalColors()}> ${total}</span></h4>
+    )
 };
