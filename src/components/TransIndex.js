@@ -16,7 +16,7 @@ export default function TransIndex({ total, setTotal }) {
                 const res = await axios.get(`${API}/transactions`);
                 console.log(res.data);
                 setTransactions(res.data);
-                
+
             } catch (err) {
                 console.log(err);
             }
@@ -39,43 +39,49 @@ export default function TransIndex({ total, setTotal }) {
 
     function getDate(transaction) {
         const date = new Date(transaction.date);
-        const options = {month: "short", day: "numeric", year: "numeric"}
+        const options = { month: "short", day: "numeric", year: "numeric" }
         return (date.toLocaleString("en-US", options));
-      };
+    };
 
 
     return (
         <div className="transactionsIndex">
             <table>
-            <thead>
-        <tr>
-          <th>Date</th>
-          <th>Transaction Name</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
-                {transactions.map((transaction, index) => {
-                    console.log(transaction);
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Transaction Name</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                    return (
+                    {transactions.map((transaction, index) => {
+                        console.log(transaction);
 
-                        <li key={index} className="Transaction">
+                        return (
 
-                            <a
-                                href={`/transactions/${index}`}
-                                style={{ "textTransform": "capitalize" }}
-                            >{transaction.from}</a>
-                            <div>Amount:
-                                {
-                                    transaction.deposit
-                                        ? <span style={{ color: "green" }}> +${transaction.amount}</span>
-                                        : <span style={{ color: "red" }}> -${transaction.amount}</span>
-                                }
-                            </div>
-                        </li>
-                    )
-                })
-                }
+                            <tr key={index} className="Transaction">
+                                <td>{getDate(transaction)}</td>
+
+                                <a
+                                    href={`/transactions/${index}`}
+                                    style={{ "textTransform": "capitalize" }}
+                                >
+                                    <td>{transaction.from}</td>
+                                </a>
+                                <td>
+                                    {
+                                        transaction.deposit
+                                            ? <span style={{ color: "green" }}> +${transaction.amount}</span>
+                                            : <span style={{ color: "red" }}> -${transaction.amount}</span>
+                                    }
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
+                </tbody>
             </table>
         </div>
     )
