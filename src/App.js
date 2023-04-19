@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 import NavBar from "./pages/NavBar";
 import Home from "./pages/Home";
@@ -12,16 +13,19 @@ import TransEdit from './components/TransEdit';
 import TransNew from './components/TransNew';
 
 function App() {
+
+  const [total, setTotal] = useState(0);
+
   return (
     <div className="App">
       <header className="App-header">
         Transaction Trackr
       </header>
-      <NavBar />
+      <NavBar total={total} setTotal={setTotal} />
       <main>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/transactions' element={<TransIndex />} />
+          <Route path='/transactions' element={<TransIndex total={total} />} />
           <Route path='/transactions/:index' element={<TransShow />} />
           <Route path='/transactions/new' element={<TransNew />} />
           <Route path='/transactions/:index/edit' element={<TransEdit />} />

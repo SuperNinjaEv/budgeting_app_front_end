@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 const API = process.env.REACT_APP_API_URL;
-console.log(API);
+// console.log(API);
 
 
-export default function TransIndex() {
+export default function TransIndex({ total, setTotal }) {
 
     const [transactions, setTransactions] = useState([]);
 
@@ -15,6 +15,7 @@ export default function TransIndex() {
                 const res = await axios.get(`${API}/transactions`);
                 console.log(res.data);
                 setTransactions(res.data);
+                
             } catch (err) {
                 console.log(err);
             }
@@ -22,23 +23,50 @@ export default function TransIndex() {
         fetchTransactions()
     }, [])
 
+    // function calculateTotal(transactions) {
+    //     transactions.map((transaction) => {
+    //         if (transaction.deposit) {
+    //             setTotal(total + transaction.amount);
+    //         } else {
+    //             setTotal(total - transaction.amount);
+    //         }
+    //     })
+    // };
+
+
     return (
         <div className="transactionsIndex">
-            <div>
+            <ol>
                 {transactions.map((transaction, index) => {
                     console.log(transaction);
+
+                    // Cause Infinite Loop...
+                    // if (transaction.deposit) {
+                    //     setTotal(total + transaction.amount);
+                    // } else {
+                    //     setTotal(total - transaction.amount);
+                    // };
+
                     return (
-                        
-                            <li key={index} className="Transaction">
-                                <a href={`/transactions/${index}`}>
-                                    {transaction.from}
-                                </a>
-                            </li>
-                        
+
+                        <li key={index} className="Transaction">
+                            <a
+                                href={`/transactions/${index}`}
+                                style={{ "textTransform": "capitalize" }}
+                            >{transaction.from}</a>
+                            <div>Amount:
+                                {
+                                    transaction.deposit
+                                        ? <span style={{ color: "green" }}> +${transaction.amount}</span>
+                                        : <span style={{ color: "red" }}> -${transaction.amount}</span>
+                                }
+                            </div>
+                        </li>
+
                     )
                 })
                 }
-            </div>
+            </ol>
         </div>
     )
 };

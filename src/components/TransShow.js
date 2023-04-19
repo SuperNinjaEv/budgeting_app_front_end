@@ -8,6 +8,7 @@ export default function TransShow() {
     let navigate = useNavigate();
     let { index } = useParams();
     const [transaction, setTransaction] = useState({});
+    const deposit = transaction.deposit;
 
     useEffect(() => {
         axios
@@ -32,11 +33,24 @@ export default function TransShow() {
             <h2>Transaction:</h2>
             <h4 style={{ "textTransform": "capitalize" }}>Item Name: {transaction.itemName}</h4>
             <h5 style={{ "textTransform": "capitalize" }}>Source: {transaction.from}</h5>
-            <p>Amount: ${transaction.amount}</p>
+            <p>Amount:
+                {
+                    deposit
+                        ? <span style={{ color: "green" }}> +${transaction.amount}</span>
+                        : <span style={{ color: "red" }}> -${transaction.amount}</span>
+                }
+            </p>
             <p>Date: {transaction.date}</p>
-            <Link to="/transactions">Back</Link>
-            <Link to={`/transactions/${index}/edit`}>Edit</Link>
-            <br />
+            <Link to="/transactions">
+                <button>
+                    Back
+                </button>
+            </Link>
+            <Link to={`/transactions/${index}/edit`}>
+                <button>
+                    Edit
+                </button>
+            </Link>
             <button onClick={handleDelete}>Delete</button>
 
         </div>

@@ -54,6 +54,14 @@ export default function TransNew() {
     return (
         <div className="transactionsEdit">
             <form onSubmit={handleSubmit}>
+                <label htmlFor="date">Date:</label>
+                <input
+                    id="date"
+                    type="date"
+                    value={transactions.date}
+                    onChange={handleTextChange}
+                />
+                <br/>
                 <label htmlFor="itemName">Item Name:</label>
                 <input
                     id="itemName"

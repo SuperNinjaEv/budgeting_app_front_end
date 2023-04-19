@@ -1,11 +1,22 @@
 import { Link } from "react-router-dom"
+import TransTotal from "../components/TransTotal"
 
-export default function NavBar() {
+export default function NavBar({ total, setTotal }) {
     return (
         <div className="NavBar">
-            <Link to="/transactions">View Budget</Link>
-            <br></br>
-            <Link to="/transactions/new">New Entry</Link>
+            <div>
+                <Link to="/transactions">
+                    <button>
+                        View Budget
+                    </button>
+                </Link>
+                <Link to="/transactions/new">
+                    <button>
+                        New Entry
+                    </button>
+                </Link>
+            </div>
+            <TransTotal total={total} setTotal={setTotal}/>
         </div>
     )
 };
