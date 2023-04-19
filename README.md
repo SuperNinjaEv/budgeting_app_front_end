@@ -32,3 +32,5 @@ For the front-end, you will need to install the following;
 
 ## Happy budgeting!
 
+![Burn it](https://i.insider.com/568e8dfcc08a80ae2f8b6a82?width=300&format=jpeg&auto=webp)
+
