@@ -26,9 +26,9 @@ export default function TransTotal({ total, setTotal }) {
     useEffect(() => {
         transactions.map((transaction) => {
             if (transaction.deposit) {
-                return totalSum += transaction.amount;
+                return totalSum += Number(transaction.amount);
             } else {
-                return totalSum -= transaction.amount;
+                return totalSum -= Number(transaction.amount);
             }
         })
         setTotal(totalSum);

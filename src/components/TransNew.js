@@ -60,6 +60,7 @@ export default function TransNew() {
                     type="date"
                     value={transactions.date}
                     onChange={handleTextChange}
+                    required
                 />
                 <br/>
                 <label htmlFor="itemName">Item Name:</label>
@@ -86,6 +87,7 @@ export default function TransNew() {
                     type="number"
                     value={transactions.amount}
                     onChange={handleTextChange}
+                    required
                 />
                 <br />
                 <label htmlFor="category">Category:</label>
