@@ -1,10 +1,12 @@
 # Welcome to my Budgeting App!
-
+***
+***
 
 ### Hello, and welcome to my budgeting app project.
 
 ![budgetPic](https://cdn.corporatefinanceinstitute.com/assets/budget-1024x617.jpeg)
-
+---
+---
 This is a React and Express based RESTful project using a local back-end setup.
 
 You will need to fork and clone both the Front-End and the Back=End repository that is listed below.
@@ -14,7 +16,8 @@ You will need to fork and clone both the Front-End and the Back=End repository t
 I have also included a link to the Asana Project Management board for easy reference of all milestones completed and achieved in this project.
 
 [Asana Project MGMT Board](https://app.asana.com/0/1204419832081373/board)
-
+---
+---
 In order to recreate this app, there are a few things that you will need in addition to the basics.
 
 For the back-end, you will need to install the following;
