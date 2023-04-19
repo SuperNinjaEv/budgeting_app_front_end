@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 const API = process.env.REACT_APP_API_URL;
 
 
-export default function transactionsEdit() {
+export default function TransEdit() {
 
     const navigate = useNavigate();
     let { index } = useParams();
@@ -23,7 +23,7 @@ export default function transactionsEdit() {
         .get(`${API}/transactions/${index}`)
         .then((res) => {
             setTransactions(res.data);
-            console.transactions(res.data);
+            console.log(res.data);
         })
         .catch((err) => console.error(err))
     }, [index]);
